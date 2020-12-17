@@ -26,7 +26,11 @@ var au = document.getElementById("au").value;
 
       request.send(JSON.stringify(params));
 var stats = request.status;
-document.getElementById("sc").innerHTML=stats; 
+sc.document.getElementById("sc")
+sc.innerHTML=stats; 
+if (stats === 0){
+sc.style="color: red;"
+}
     }
 
   </script>

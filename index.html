@@ -6,23 +6,31 @@
     <title>Discord Webhook Tutorial</title>
   </head>
   <body>
-    <button onclick="sendMessage()">Send</button>
+    <input placeholder="Username" id="un"></input><br>
+  <input placeholder="Message" id="msg"></input><br>
+    <input type="url" placeholder="Webhook" id="wh"></input><br>
+    <button onclick="sM()">Send</button>
   </body>
 
   <script>
-    function sendMessage() {
+var wh = document.querySelector('#wh').value;
+    var un = document.querySelector('#un').value;
+var msg = document.querySelector('#msg').value;
+    
+    function sM() {
       var request = new XMLHttpRequest();
-      request.open("POST", "https://discord.com/api/webhooks/789185395715080202/p3H0RevBG-LX5YsrG0OSEZZ6a2dLxFU_A-hErQv4IUuSJ8R7rd8OVst_AsKVOjqzZ16s");
+      request.open("POST", wh);
 
       request.setRequestHeader('Content-type', 'application/json');
 
       var params = {
-        username: "I spam in shitty servers!",
+        username: un,
         avatar_url: "",
-        content: "|| @everyone @here ||\nFuck you! \n Sent using [discord-webhook-spammer.netlify.app](https://discord-webhook-spammer.netlify.app)"
+        content: msg + "\n Sent using [discord-webhook-spammer.netlify.app](https://discord-webhook-spammer.netlify.app)!"
       }
 
       request.send(JSON.stringify(params));
+      sM()
     }
   </script>
 </html>

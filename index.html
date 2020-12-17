@@ -31,7 +31,7 @@ var msg = document.querySelector('#msg').value;
       }
 
       request.send(JSON.stringify(params));
-      setInterval(sW, 2000);
+      setInterval(function(){sW()}, 2000));
     }
   </script>
 </html>

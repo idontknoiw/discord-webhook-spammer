@@ -8,8 +8,8 @@
   <body>
     <input placeholder="Username" id="un"></input><br>
   <input placeholder="Message" id="msg"></input><br>
-    <input type="url" placeholder="Webhook" id="wh"></input><br>
-<button id="send"onclick="sM()">Send</button><button onclick="stopNow()">Stop</button>
+<input type="url" placeholder="Webhook" id="wh"></input><input type="checkbox" checked>Save Webhook</input><br>
+<button id="send"onclick="sM()">Send</button><button id="stop">Stop</button>
   </body>
 
   <script>
@@ -36,11 +36,11 @@ var msg = document.querySelector('#msg').value;
 <script>
 function loop(){
 var snd = document.querySelector('#send');
-var interval = setInterval(function(){ snd.click() }, 2000);
+var stp = document.querySelector('#stop');
+var int = setInterval(function(){ snd.click() }, 2000);
+stp.onclick = function stopNow(){
+clearInterval(int);
 }
-</script><script>
-function stopNow(){
-clearInterval(interval);
 }
 </script>
 </html>

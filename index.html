@@ -1,4 +1,4 @@
-<!doctype html><head><title>DWS</title></head><body><form method=";"onsumbit="sendMessage()">
+<!doctype html><head><title>DWS</title></head><body><form id="form" onsumbit="sendMessage()">
 <input required type="url" id="wh" placeholder="Webhook..."></input><br>
 <input required placeholder="Message..." id="msg"maxlength="2000"></input><br><br><strong>Not required</strong><br>
 <input id="un" maxlength="22" minlegth="2" placeholder="Username..."></input><br>
@@ -25,6 +25,9 @@ var au = document.getElementById("au").value;
       }
 
       request.send(JSON.stringify(params));
+var form = document.getElementById("form");
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
 var stats = request.status;
 sc.document.getElementById("sc")
 sc.innerHTML=stats; 

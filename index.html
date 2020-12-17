@@ -8,10 +8,10 @@
 <input type="Submit" onclick="sendMessage()" value="Spam"></input>
 </form>
 <script>
-var wh  = document.getElementById("wh");
-var msg = document.getElementById("msg");
-var un = document.getElementById("un");
-var au = document.getElementById("au");
+var wh  = document.getElementById("wh").value;
+var msg = document.getElementById("msg").value;
+var un = document.getElementById("un").value;
+var au = document.getElementById("au").value;
     function sendMessage() {
       var request = new XMLHttpRequest();
       request.open("POST", wh);

@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord Webhook Tutorial</title>
+    <title>Discord Webhook Spammer</title>
   </head>
   <body>
     <input placeholder="Username" id="un"></input><br>
   <input placeholder="Message" id="msg"></input><br>
     <input type="url" placeholder="Webhook" id="wh"></input><br>
-<button id="send"onclick="sM()">Send</button><button onclick="stop()"></button>
+<button id="send"onclick="sM()">Send</button><button onclick="stop()">Stop</button>
   </body>
 
   <script>
@@ -35,11 +35,12 @@ var msg = document.querySelector('#msg').value;
 </script>
 <script>
 function loop(){
-sM()
+var snd = document.querySelector('#send');
+var interval = setInterval(function(){ snd.click() }, 2000);
 }
 </script><script>
 function stop(){
-sM.request.abort()
+clearInterval(interval);
 }
 </script>
 </html>

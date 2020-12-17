@@ -9,7 +9,7 @@
     <input placeholder="Username" id="un"></input><br>
   <input placeholder="Message" id="msg"></input><br>
     <input type="url" placeholder="Webhook" id="wh"></input><br>
-    <button id="send"onclick="sM()">Send</button>
+<button id="send"onclick="sM()">Send</button><button onclick="stop()"></button>
   </body>
 
   <script>
@@ -35,9 +35,13 @@ var msg = document.querySelector('#msg').value;
   </script>
 <script>
 function loop(){
-var snd = document.querySelector('#send');
-snd.click()
-loop()
+var send;
+send = setTimeout("sM", 900);
 }
 </script>
+<script>
+function stop(){
+clearTimeout(send);
+request.abort()
+}
 </html>

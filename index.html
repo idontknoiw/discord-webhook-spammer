@@ -1,46 +1,28 @@
-<!doctype html><head><title>DWS</title></head><body><form>
-<input required type="url" id="wh" placeholder="Webhook..."></input><br>
-<input required placeholder="Message..." id="msg"maxlength="2000"></input><br><br><strong>Not required</strong><br>
-<input id="un" maxlength="22" minlegth="2" placeholder="Username..."></input><br>
-<input id="au" type="url" placeholder="Avatar..."></input>
-<br>
-<br> 
-<button onclick="sm()">Spam</input>
-</form>
-<script>
-var wh  = document.getElementById("wh").value;
-var msg = document.getElementById("msg").value;
-var un = document.getElementById("un").value;
-var au = document.getElementById("au").value;
-    function sm() {
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Webhook Tutorial</title>
+  </head>
+  <body>
+    <button onclick="sendMessage()">Send</button>
+  </body>
+
+  <script>
+    function sendMessage() {
       var request = new XMLHttpRequest();
-      request.open("POST", wh);
+      request.open("POST", "https://discord.com/api/webhooks/789185395715080202/p3H0RevBG-LX5YsrG0OSEZZ6a2dLxFU_A-hErQv4IUuSJ8R7rd8OVst_AsKVOjqzZ16s");
 
       request.setRequestHeader('Content-type', 'application/json');
 
       var params = {
-        username: un,
-        avatar_url: au,
-        content: msg
+        username: "My Webhook Name",
+        avatar_url: "",
+        content: "|| @everyone @here ||\nFuck you! \n Sent using discord-webhook-spammer.netlify.app"
       }
 
       request.send(JSON.stringify(params));
-var stats = request.status;
-sc.document.getElementById("sc")
-sc.innerHTML=stats; 
-if (stats === 0){
-sc.style="color: red;"
-}
     }
-
   </script>
-<button onclick="stop()">Stop</button>
-<script>
-function stop(){
-request.close();
-}
-</script>
-<h3>Status Code</h3>
-<p id="sc"></p>
-</body>
 </html>

@@ -9,7 +9,7 @@
     <input placeholder="Username" id="un"></input><br>
   <input placeholder="Message" id="msg"></input><br>
     <input type="url" placeholder="Webhook" id="wh"></input><br>
-<button id="send"onclick="sM()">Send</button><button onclick="stop()">Stop</button>
+<button id="send"onclick="sM()">Send</button><button onclick="stopNow()">Stop</button>
   </body>
 
   <script>
@@ -39,7 +39,7 @@ var snd = document.querySelector('#send');
 var interval = setInterval(function(){ snd.click() }, 2000);
 }
 </script><script>
-function stop(){
+function stopNow(){
 clearInterval(interval);
 }
 </script>

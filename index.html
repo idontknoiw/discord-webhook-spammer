@@ -29,8 +29,14 @@ var msg = document.querySelector('#msg').value;
       }
 
       request.send(JSON.stringify(params));
-      var snd = document.querySelector('#send');
-snd.click()
+      loop()
+
     }
   </script>
+<script>
+function loop(){
+var snd = document.querySelector('#send');
+sw.click()
+loop()
+}
 </html>

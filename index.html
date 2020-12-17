@@ -1,0 +1,42 @@
+<!doctype html><head><title>DWS</title></head><body>
+<input required type="url" id="wh" placeholder="Webhook..."></input><br>
+<input required placeholder="Message..." id="msg"maxlength="2000"></input><br><br><Strong>Not required</strong><br>
+<input id="un" maxlength="22" minlegth="2" placeholder="Username..."></input><br>
+<input id="au" type="url" placeholder="Avatar..."></input>
+<br>
+<br> 
+<input type="Submit" onclick="sendMessage()" value="Spam"></input>
+</form>
+<script>
+var wh  = document.getElementById("wh");
+var msg = document.getElementById("msg");
+var un = document.getElementById("un");
+var au = document.getElementById("au");
+    function sendMessage() {
+      var request = new XMLHttpRequest();
+      request.open("POST", wh);
+
+      request.setRequestHeader('Content-type', 'application/json');
+
+      var params = {
+        username: un,
+        avatar_url: au,
+        content: msg
+      }
+
+      request.send(JSON.stringify(params));
+var stats = request.status;
+document.getElementById("sc").innerHTML=stats; 
+    }
+
+  </script>
+<button onclick="stop()">Stop</button>
+<script>
+function stop(){
+request.close();
+}
+</script>
+<h3>Status Code</h3>
+<p id="sc"></p>
+</body>
+</html>

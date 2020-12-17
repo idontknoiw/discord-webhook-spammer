@@ -9,12 +9,10 @@
     <input placeholder="Username" id="un"></input><br>
   <input placeholder="Message" id="msg"></input><br>
     <input type="url" placeholder="Webhook" id="wh"></input><br>
-    <button onclick="sM()">Send</button>
+    <button id="send"onclick="sM()">Send</button>
   </body>
 
   <script>
-
-    
     function sM() {
 var wh = document.querySelector('#wh').value;
     var un = document.querySelector('#un').value;
@@ -31,7 +29,8 @@ var msg = document.querySelector('#msg').value;
       }
 
       request.send(JSON.stringify(params));
-      setInterval(function(){sW()}, 2000));
+      var snd = document.querySelector('#send');
+snd.click()
     }
   </script>
 </html>

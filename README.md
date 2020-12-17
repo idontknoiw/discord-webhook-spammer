@@ -1,3 +1,3 @@
-# discord-webhook-spammer
+# Discord Webhook Spammer
 ---
-Find the site [Here](https://discord-webhook-spammer.netlify.app/)!
+Find the site [here](https://discord-webhook-spammer.netlify.app/)!

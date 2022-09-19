@@ -14,7 +14,7 @@ var int;
 
 function send() {
     if (msg.length > 0 && wh.value.length > 0 && un.length > 0) {
-        if (isValidUrl(wh)) {
+        if (isValidUrl(wh.value)) {
             var request = new XMLHttpRequest();
             request.open("POST", wh.value);
 
@@ -43,12 +43,12 @@ function stop(){
     clearInterval(int);
 };
 
-function save() {
+function save(e) {
     if (isValidUrl(wh.value)) {
         localStorage.setItem("webhook", wh.value);
     } else {
         alert("invalid webhook");
-        document.getElementById("cb").checked = false;
+        e.target.checked = false;
     }
 }
 window.onload = function() {
@@ -59,9 +59,13 @@ window.onload = function() {
     }
 };
 </script>
-    <input placeholder="Username" id="un"></input><br>
-  <input placeholder="Message" id="msg"></input><br>
-<input type="url" placeholder="Webhook" id="wh"></input><input id="cb" type="checkbox" onclick='save(this);' checked>Save Webhook</input><br>
+  <input placeholder="Username" id="un"/>
+  <br/>
+  <input placeholder="Message" id="msg"/>
+  <br/>
+  <input type="url" placeholder="Webhook" id="wh"/>
+  <input id="cb" type="checkbox" onclick='save(this)' checked>Save Webhook</input>
+  <br/>
 <button id="send" onclick="send()">Send</button><button id="stop" onclick="stop()">Stop</button>
   </body>
 </html>

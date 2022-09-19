@@ -45,7 +45,7 @@ function stop(){
 };
 
 function save() {
-    if (isValidUrl(wh.value)) {
+    if ("/discord.com\/api\/webhooks\/([^\/]+)\/([^\/]+)/".test(wh.value)) {
         localStorage.setItem("webhook", wh.value);
     } else {
         alert("invalid webhook");

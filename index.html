@@ -6,41 +6,62 @@
     <title>Discord Webhook Spammer</title>
   </head>
   <body>
+<script>
+var wh = document.getElementById('wh');
+var un = document.getElementById('un').value;
+var msg = document.getElementById('msg').value;
+var int;
+
+function send() {
+    if (msg.length > 0 && wh.value.length > 0 && un.length > 0) {
+        if (isValidUrl(wh)) {
+            var request = new XMLHttpRequest();
+            request.open("POST", wh.value);
+
+            request.setRequestHeader('Content-type', 'application/json');
+
+            var params = {
+                username: un,
+                avatar_url: "",
+                content: msg + "\n Sent using https://discord-webhook-spammer.netlify.app!"
+            };
+
+            request.send(JSON.stringify(params));
+            loop();
+        } else {
+            alert("invalid webhook");
+        }
+    } else {
+        alert("missing input(s)");
+    }
+}
+
+function loop() {
+    int = setInterval(send, 2000);
+}
+function stop(){
+    clearInterval(int);
+};
+
+function save() {
+    if (isValidUrl(wh.value)) {
+        localStorage.setItem("webhook", wh.value);
+    } else {
+        alert("invalid webhook");
+        document.getElementById("cb").checked = false;
+    }
+}
+window.onload = function() {
+    if (localStorage.getItem("webhook") === null) {
+        console.log("no webhook saved");
+    } else {
+        wh.value = localStorage.getItem("webhook");
+    }
+};
+</script>
     <input placeholder="Username" id="un"></input><br>
   <input placeholder="Message" id="msg"></input><br>
-<input type="url" placeholder="Webhook" id="wh"></input><input type="checkbox" checked>Save Webhook</input><br>
-<button id="send"onclick="sM()">Send</button><button id="stop">Stop</button>
+<input type="url" placeholder="Webhook" id="wh"></input><input id="cb" type="checkbox" onclick='save(this);' checked>Save Webhook</input><br>
+<button id="send" onclick="send()">Send</button><button id="stop" onclick="stop()">Stop</button>
   </body>
-
-  <script>
-    function sM() {
-var wh = document.querySelector('#wh').value;
-    var un = document.querySelector('#un').value;
-var msg = document.querySelector('#msg').value;
-      var request = new XMLHttpRequest();
-      request.open("POST", wh);
-
-      request.setRequestHeader('Content-type', 'application/json');
-
-      var params = {
-        username: un,
-        avatar_url: "",
-        content: msg + "\n Sent using [discord-webhook-spammer.netlify.app](https://discord-webhook-spammer.netlify.app)!"
-      }
-
-      request.send(JSON.stringify(params));
-      loop()
-
-    }
-</script>
-<script>
-function loop(){
-var snd = document.querySelector('#send');
-var stp = document.querySelector('#stop');
-var int = setInterval(function(){ snd.click() }, 2000);
-stp.onclick = function stopNow(){
-clearInterval(int);
-}
-}
-</script>
 </html>

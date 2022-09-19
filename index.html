@@ -10,11 +10,7 @@
 var wh = document.getElementById('wh');
 var un = document.getElementById('un');
 var msg = document.getElementById('msg');
-var int, send;
-
-function loop() {
-    int = setInterval(send, 2000);
-}
+var int;
 
 function send() {
     if (msg.value.length > 0 && wh.value.length > 0 && un.value.length > 0) {
@@ -31,7 +27,7 @@ function send() {
             };
 
             request.send(JSON.stringify(params));
-            loop();
+            int = setInterval(send, 2000);
         } else {
             alert("invalid webhook");
         }
@@ -67,6 +63,6 @@ window.onload = function() {
   <input type="url" placeholder="Webhook" id="wh"/>
   <input id="cb" type="checkbox" onclick='save()'>Save Webhook</input>
   <br/>
-<input id="send" onclick="send()" type="button" value="send"/><input id="stop" onclick="stop()" type="button" value="stop"/>
+  <input id="send" onclick="send()" type="button" value="send"/><input id="stop" onclick="stop()" type="button" value="stop"/>
   </body>
 </html>

@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord Webhook Spammer</title>
   </head>
-  <body>
+<body>
 <script>
 var wh = document.getElementById('wh');
-var un = document.getElementById('un').value;
-var msg = document.getElementById('msg').value;
+var un = document.getElementById('un');
+var msg = document.getElementById('msg');
 var int;
 
+function loop() {
+    int = setInterval(send, 2000);
+}
+
 function send() {
-    if (msg.length > 0 && wh.value.length > 0 && un.length > 0) {
+    if (msg.value.length > 0 && wh.value.length > 0 && un.value.length > 0) {
         if (isValidUrl(wh.value)) {
             var request = new XMLHttpRequest();
             request.open("POST", wh.value);
@@ -21,9 +25,9 @@ function send() {
             request.setRequestHeader('Content-type', 'application/json');
 
             var params = {
-                username: un,
+                username: un.value,
                 avatar_url: "",
-                content: msg + "\n Sent using https://discord-webhook-spammer.netlify.app!"
+                content: msg.value + "\n Sent using https://discord-webhook-spammer.netlify.app!"
             };
 
             request.send(JSON.stringify(params));
@@ -36,9 +40,6 @@ function send() {
     }
 }
 
-function loop() {
-    int = setInterval(send, 2000);
-}
 function stop(){
     clearInterval(int);
 };
@@ -53,7 +54,7 @@ function save(e) {
 }
 window.onload = function() {
     if (localStorage.getItem("webhook") === null) {
-        console.log("no webhook saved");
+        alert("no webhook saved");
     } else {
         wh.value = localStorage.getItem("webhook");
     }

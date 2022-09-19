@@ -18,7 +18,7 @@ function loop() {
 
 function send() {
     if (msg.value.length > 0 && wh.value.length > 0 && un.value.length > 0) {
-        if (isValidUrl(wh.value)) {
+        if ("/discord.com\/api\/webhooks\/([^\/]+)\/([^\/]+)/".test(wh.value)) {
             var request = new XMLHttpRequest();
             request.open("POST", wh.value);
 
@@ -44,7 +44,7 @@ function stop(){
     clearInterval(int);
 };
 
-function save(e) {
+function save() {
     if (isValidUrl(wh.value)) {
         localStorage.setItem("webhook", wh.value);
     } else {
@@ -65,7 +65,7 @@ window.onload = function() {
   <input placeholder="Message" id="msg"/>
   <br/>
   <input type="url" placeholder="Webhook" id="wh"/>
-  <input id="cb" type="checkbox" onclick='save(this)'>Save Webhook</input>
+  <input id="cb" type="checkbox" onclick='save()'>Save Webhook</input>
   <br/>
 <button id="send" onclick="send()">Send</button><button id="stop" onclick="stop()">Stop</button>
   </body>

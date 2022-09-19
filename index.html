@@ -10,7 +10,7 @@
 var wh = document.getElementById('wh');
 var un = document.getElementById('un');
 var msg = document.getElementById('msg');
-var int;
+var int, send;
 
 function loop() {
     int = setInterval(send, 2000);
@@ -54,7 +54,7 @@ function save(e) {
 }
 window.onload = function() {
     if (localStorage.getItem("webhook") === null) {
-        alert("no webhook saved");
+        console.log("no webhook saved");
     } else {
         wh.value = localStorage.getItem("webhook");
     }
